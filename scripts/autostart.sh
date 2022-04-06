@@ -6,4 +6,4 @@
 feh --bg-fill ~/Pictures/wall/wall.png &
 # run bar script and dwm ( do not remove this )
 bash ~/.config/chadwm/scripts/./bar.sh &
-dwm
+/usr/local/bin/dwm
