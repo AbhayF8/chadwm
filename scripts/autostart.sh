@@ -1,6 +1,9 @@
 #!/bin/sh
 ksuperkey -e 'Super_L=Alt_L|F1' &
 ksuperkey -e 'Super_R=Alt_L|F1' &
+
+#xfce policy agent
+/usr/lib/xfce-polkit/xfce-polkit &
 # this is just an example!
 # add your autostart stuffs here
 #xrdb merge ~/.Xresources &
