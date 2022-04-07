@@ -145,7 +145,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask,                 XK_w,       spawn,          SHCMD("brave")},
     { MODKEY|ShiftMask,                 XK_f,       spawn,          SHCMD("thunar")},
     { MODKEY|ShiftMask,                 XK_Return,  spawn,          SHCMD("st")},
-    { Mod1Mask,                         XK_F1,      spawn,          SHCMD("/usr/share/archcraft-dwm/dwm/rofi/bin/launcher")},
+    { Mod1Mask,                         XK_F1,      spawn,          SHCMD("/usr/share/archcraft/dwm/rofi/bin/launcher")},
     { MODKEY,                           XK_n,       spawn,          SHCMD("/usr/local/bin/nmd")},
     { MODKEY|ShiftMask,                 XK_m,       spawn,          SHCMD("/usr/share/archcraft/dwm/rofi/bin/mpd")},
     { MODKEY|ShiftMask,                 XK_n,       spawn,          SHCMD("/usr/share/archcraft/dwm/rofi/bin/network")},
