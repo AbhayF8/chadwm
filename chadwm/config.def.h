@@ -28,8 +28,8 @@ static const int scalepreview       = 4;
 static const int tag_preview        = 0;        /* 1 means enable, 0 is off */
 static const int colorfultag        = 1;        /* 0 means use SchemeSel for selected non vacant tag */
 
-static const char *fonts[]          = { "JetBrainsMono Nerd Font:style:medium:size=10",
-                                        "Material Design Icons-Regular:size=10" };
+static const char *fonts[]          = { "JetBrainsMono Nerd Font:style:medium:size=8",
+                                        "Material Design Icons-Regular:size=8" };
 
 // theme
 #include "themes/onedark.h"
@@ -134,15 +134,25 @@ static Key keys[] = {
     {0,              XF86XK_MonBrightnessUp,        spawn,          SHCMD("xbacklight -inc 5")},
 
     // screenshot fullscreen and cropped
-    {MODKEY|ControlMask,                XK_u,       spawn,
-        SHCMD("maim | xclip -selection clipboard -t image/png")},
-    {MODKEY,                            XK_u,       spawn,
-        SHCMD("maim --select | xclip -selection clipboard -t image/png")},
+    //{MODKEY|ControlMask,                XK_Print,       spawn,
+    //    SHCMD("maim | xclip -selection clipboard -t image/png")},
+    //{MODKEY|ShiftMask,                            XK_Print,       spawn,
+    //   SHCMD("maim --select | xclip -selection clipboard -t image/png")},
 
 
-    { MODKEY,                           XK_c,       spawn,          SHCMD("rofi -show drun") },
-    { MODKEY,                           XK_Return,  spawn,          SHCMD("st")},
-    // { MODKEY,                           XK_Return, spawn,            SHCMD("st_pad && st")},
+    // { MODKEY,                           XK_c,       spawn,          SHCMD("rofi -show drun") },
+    { MODKEY,                           XK_Return,  spawn,          SHCMD("alacritty")},
+    { MODKEY|ShiftMask,                 XK_w,       spawn,          SHCMD("brave")},
+    { MODKEY|ShiftMask,                 XK_f,       spawn,          SHCMD("thunar")},
+    { MODKEY|ShiftMask,                 XK_Return,  spawn,          SHCMD("st")},
+    { MOD1MASK,                         XK_F1,      spawn,          SHCMD("/usr/share/archcraft-dwm/rofi/bin/launcher")},
+    { MODKEY,                           XK_n,       spawn,          SHCMD("/usr/local/bin/nmd")},
+    { MODKEY|ShiftMask,                 XK_m,       spawn,          SHCMD("/usr/share/archcraft-dwm/rofi/bin/mpd")},
+    { MODKEY|ShiftMask,                 XK_n,       spawn,          SHCMD("/usr/share/archcraft-dwm/rofi/bin/network")},
+    { MODKEY,                           XK_Print,   spawn,          SHCMD("cd ~/Pictures/Screenshots && maim -u -f png | tee "Screenshot_$(date +%Y-%m-%d-%H-%M-%S)_$(xrandr | head -n1 | cut -d',' -f2 | tr -d '[:blank:],current').png" | xclip -selection clipboard -t image/png && notify-send 'Screenshot taken'")},
+    { ControlMask,                      XK_Print,   spawn,          SHCMD("cd ~/Pictures/Screenshots && maim -u -f png -i `xdotool getactivewindow` | tee "Screenshot_$(date +%Y-%m-%d-%H-%M-%S)_$(xrandr | head -n1 | cut -d',' -f2 | tr -d '[:blank:],current').png" | xclip -selection clipboard -t image/png && notify-send 'Screenshot of the active window taken'" )},
+    { ControlMask|MOD1Mask,             XK_Print,   spawn,          SHCMD("cd ~/Pictures/Screenshots && maim -u -f png -s -b 2 -c 0.35,0.55,0.85,0.25 -l | tee "Screenshot_$(date +%Y-%m-%d-%H-%M-%S)_$(xrandr | head -n1 | cut -d',' -f2 | tr -d '[:blank:],current').png" | xclip -selection clipboard -t image/png && notify-send 'Screenshot of the area taken'")},
+    //{ MODKEY,                           XK_Return, spawn,            SHCMD("st_pad && st")},
     
 
     // toggle stuff
@@ -220,7 +230,7 @@ static Key keys[] = {
     { MODKEY|ControlMask,               XK_q,       quit,           {0} },
 
     // kill window
-    { MODKEY,                           XK_q,       killclient,     {0} },
+    { MODKEY,                           XK_c,       killclient,     {0} },
 
     // restart
     { MODKEY|ShiftMask,                 XK_r,       quit,           {1} },
