@@ -145,13 +145,13 @@ static Key keys[] = {
     { MODKEY|ShiftMask,                 XK_w,       spawn,          SHCMD("brave")},
     { MODKEY|ShiftMask,                 XK_f,       spawn,          SHCMD("thunar")},
     { MODKEY|ShiftMask,                 XK_Return,  spawn,          SHCMD("st")},
-    { MOD1MASK,                         XK_F1,      spawn,          SHCMD("/usr/share/archcraft-dwm/rofi/bin/launcher")},
+    { Mod1Mask,                         XK_F1,      spawn,          SHCMD("/usr/share/archcraft-dwm/rofi/bin/launcher")},
     { MODKEY,                           XK_n,       spawn,          SHCMD("/usr/local/bin/nmd")},
     { MODKEY|ShiftMask,                 XK_m,       spawn,          SHCMD("/usr/share/archcraft-dwm/rofi/bin/mpd")},
     { MODKEY|ShiftMask,                 XK_n,       spawn,          SHCMD("/usr/share/archcraft-dwm/rofi/bin/network")},
-    { MODKEY,                           XK_Print,   spawn,          SHCMD("cd ~/Pictures/Screenshots && maim -u -f png | tee "Screenshot_$(date +%Y-%m-%d-%H-%M-%S)_$(xrandr | head -n1 | cut -d',' -f2 | tr -d '[:blank:],current').png" | xclip -selection clipboard -t image/png && notify-send 'Screenshot taken'")},
-    { ControlMask,                      XK_Print,   spawn,          SHCMD("cd ~/Pictures/Screenshots && maim -u -f png -i `xdotool getactivewindow` | tee "Screenshot_$(date +%Y-%m-%d-%H-%M-%S)_$(xrandr | head -n1 | cut -d',' -f2 | tr -d '[:blank:],current').png" | xclip -selection clipboard -t image/png && notify-send 'Screenshot of the active window taken'" )},
-    { ControlMask|MOD1Mask,             XK_Print,   spawn,          SHCMD("cd ~/Pictures/Screenshots && maim -u -f png -s -b 2 -c 0.35,0.55,0.85,0.25 -l | tee "Screenshot_$(date +%Y-%m-%d-%H-%M-%S)_$(xrandr | head -n1 | cut -d',' -f2 | tr -d '[:blank:],current').png" | xclip -selection clipboard -t image/png && notify-send 'Screenshot of the area taken'")},
+    { MODKEY,                           XK_Print,   spawn,          SHCMD("takeshot --now")},
+    { ControlMask,                      XK_Print,   spawn,          SHCMD("takeshot --win" )},
+    { ControlMask|Mod1Mask,             XK_Print,   spawn,          SHCMD("takeshot --area")},
     //{ MODKEY,                           XK_Return, spawn,            SHCMD("st_pad && st")},
     
 
