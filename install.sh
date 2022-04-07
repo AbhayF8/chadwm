@@ -18,6 +18,7 @@ echo "Copying the required fonts"
 sleep 1
 cp fonts/* ~/.local/share/fonts
 echo "Making the dwm using make"
+cd chadwm
 sudo make install
 sleep 1
 echo "Creating a desktop entry with name chadwm.desktop which will run the autostart file inside chadwm"
