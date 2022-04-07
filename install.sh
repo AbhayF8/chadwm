@@ -7,7 +7,7 @@ echo "Cloning"
 git clone "https://github.com/AbhayF8/chadwm"
 sleep 1
 echo "moving to the cloned directory"
-cd chadwm
+# cd chadwm
 echo "moving chadwm directory to the .config directory"
 mv chadwm ~/.config
 sleep 1
