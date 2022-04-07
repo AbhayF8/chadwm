@@ -5,5 +5,5 @@
 #xrdb merge ~/.Xresources &
 feh --bg-fill ~/Pictures/wall/wall.png &
 # run bar script and dwm ( do not remove this )
-bash ~/.config/chadwm/scripts/./bar.sh &
+bash ~/.config/chadwm/scripts/./dwmbar.sh &
 /usr/local/bin/dwm
