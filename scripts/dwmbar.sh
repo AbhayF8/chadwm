@@ -17,11 +17,11 @@ memory() {
 
 ## Wi-fi
 wlan() {
-	R1=`cat /sys/class/net/w*/statistics/rx_bytes`
-	T1=`cat /sys/class/net/w*/statistics/tx_bytes`
+	R1=`cat /sys/class/net/wl*/statistics/rx_bytes`
+	T1=`cat /sys/class/net/wl*/statistics/tx_bytes`
 	sleep 1
-	R2=`cat /sys/class/net/w*/statistics/rx_bytes`
-	T2=`cat /sys/class/net/w*/statistics/tx_bytes`
+	R2=`cat /sys/class/net/wl*/statistics/rx_bytes`
+	T2=`cat /sys/class/net/wl*/statistics/tx_bytes`
 	TBPS=`expr $T2 - $T1`
 	RBPS=`expr $R2 - $R1`
 	TKBPS=`expr $TBPS / 1024`
@@ -70,14 +70,21 @@ temp() {
 
 ## Battery Info
 battery() {
-	BAT=$(upower -i `upower -e | grep 'BAT'` | grep 'percentage' | cut -d':' -f2 | tr -d '%,[:blank:]')
-	AC=$(upower -i `upower -e | grep 'BAT'` | grep 'state' | cut -d':' -f2 | tr -d '[:blank:]')
+	BAT=$(sed 's/$//' /sys/class/power_supply/BAT0/capacity)
+	AC=$(sed 's/$//' /sys/class/power_supply/BAT0/status)
+	# BAT=$(upower -i `upower -e | grep 'BAT'` | grep 'percentage' | cut -d':' -f2 | tr -d '%,[:blank:]')
+	# AC=$(upower -i `upower -e | grep 'BAT'` | grep 'state' | cut -d':' -f2 | tr -d '[:blank:]')
 
-	if [[ "$AC" == "charging" ]]; then
+	if [[ "$AC" == "Charging" ]]; then
 		printf "^c#E49263^  $BAT%%"
-	elif [[ "$AC" == "fully-charged" ]]; then
+	elif [[ "$AC" == "Full" ]] || [[ "$AC" == "Not charging" ]]; then
 		printf "^c#E06C75^  Full"
 	else
+	# if [[ "$AC" == "charging" ]]; then
+		# printf "^c#E49263^  $BAT%%"
+	# elif [[ "$AC" == "fully-charged" ]]; then
+		# printf "^c#E06C75^  Full"
+	# else
 		if [[ ("$BAT" -ge "0") && ("$BAT" -le "20") ]]; then
 			printf "^c#E98CA4^  $BAT%%"
 		elif [[ ("$BAT" -ge "20") && ("$BAT" -le "40") ]]; then
