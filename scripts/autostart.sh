@@ -29,6 +29,7 @@ if
 then 
 alacritty -e kodi &
 fi
+xrdb -merge ~/.Xresources
 #
 
 
