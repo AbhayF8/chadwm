@@ -33,7 +33,7 @@ cd chadwm
 sh install.sh
 
 ```
-~~copy the stuff from fonts folder to your ~/.local/share/fonts~~ 
+- ~~copy the stuff from fonts folder to your \~/.local/share/fonts~~ 
 - autostart.sh script in the scripts dir is just an example one so it must be adjusted for your liking!
 
 # Run chadwm(Not needed for my fork)
