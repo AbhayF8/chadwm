@@ -28,19 +28,19 @@ https://user-images.githubusercontent.com/59060246/128050994-17f46934-6604-4430-
 # Setup 
 
 ```
-git clone https://github.com/siduck/chadwm --depth 1
-mv chadwm ~/.config
-cd ~/.config/chadwm/chadwm
-sudo make install
+git clone https://github.com/AbhayF8/chadwm.git
+cd chadwm
+sh install.sh
+
 ```
-- copy the stuff from fonts folder to your ~/.local/share/fonts 
-- autostart script in the scripts dir is just an example one so it must be adjusted for your liking!
+- ~~copy the stuff from fonts folder to your ~/.local/share/fonts~~ 
+- autostart.sh script in the scripts dir is just an example one so it must be adjusted for your liking!
 
-# Run chadwm
+# Run chadwm(Not needed for my fork)
 
-Run the autostart file from .xinitrc
+~~Run the autostart file from .xinitrc~~
 
-(.xinitrc file)
+~~(.xinitrc file)~~
 ```
 #!/bin/sh
 
@@ -48,7 +48,7 @@ exec ~/.config/chadwm/scripts/./autostart
 ```
 OR
 
-Create a desktop entry 
+~~Create a desktop entry~~ 
 
 ```
 touch /usr/share/xsessions/chadwm.desktop  
