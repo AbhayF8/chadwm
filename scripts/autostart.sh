@@ -31,8 +31,10 @@ then
 alacritty -e kodi &
 fi
 xrdb -merge ~/.Xresources
+picom &
 #
 
 
 #Starting DWM
 /usr/local/bin/dwm
+

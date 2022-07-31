@@ -15,6 +15,37 @@ memory() {
 	printf "^c#C678DD^^b#1e222a^   $(free -h | awk '/^Mem/ { print $3 }' | sed s/i//g) "
 }
 
+## Ethernet
+eth() {
+	R1=`cat /sys/class/net/e*/statistics/rx_bytes`
+	T1=`cat /sys/class/net/e*/statistics/tx_bytes`
+	sleep 1
+	R2=`cat /sys/class/net/e*/statistics/rx_bytes`
+	T2=`cat /sys/class/net/e*/statistics/tx_bytes`
+	TBPS=`expr $T2 - $T1`
+	RBPS=`expr $R2 - $R1`
+	TKBPS=`expr $TBPS / 1024`
+	RKBPS=`expr $RBPS / 1024`
+	if [[ $RKBPS  -gt 1024 ]]
+	then
+		downlink="$(expr $RKBPS / 1024) mB"
+	else
+		downlink="$RKBPS kB"
+	fi
+	if [[ $TKBPS  -gt 1024 ]]
+	then
+		uplink="$(expr $TKBPS / 1024) mB"
+	else
+		uplink="$TKBPS kB"
+	fi
+
+
+	case "$(cat /sys/class/net/e*/operstate 2>/dev/null)" in
+		up) printf "^c#3b414d^^b#7aa2f7^  ^d^%s" " ^c#7aa2f7^$downlink | $uplink" ;;
+		down) printf "^c#3b414d^^b#E06C75^  ^d^%s" " ^c#E06C75^Disconnected " ;;
+	esac
+}
+
 ## Wi-fi
 wlan() {
 	R1=`cat /sys/class/net/w*/statistics/rx_bytes`
@@ -29,13 +60,13 @@ wlan() {
 	if [[ $RKBPS  -gt 1024 ]]
 	then
 		downlink="$(expr $RKBPS / 1024) mB"
-	else 
+	else
 		downlink="$RKBPS kB"
 	fi
 	if [[ $TKBPS  -gt 1024 ]]
 	then
 		uplink="$(expr $TKBPS / 1024) mB"
-	else 
+	else
 		uplink="$TKBPS kB"
 	fi
 
@@ -60,7 +91,7 @@ temp() {
 ## System Update
 # updates() {
 	# updates=$(checkupdates | wc -l)
-# 
+#
 	# if [ -z "$updates" ]; then
 		# printf "^c#98C379^  Updated"
 	# else
@@ -119,5 +150,5 @@ while true; do
   [ "$interval" == 0 ] || [ $(("$interval" % 3600)) == 0 ] # && updates=$(updates)
   interval=$((interval + 1))
 
-  sleep 1 && xsetroot -name "$(battery) $(brightness) $(temp) $(cpu_info) $(memory) $(wlan) $(clock)"
+  sleep 1 && xsetroot -name "$(battery) $(brightness) $(temp) $(cpu_info) $(memory) $(eth) $(clock)"
 done
